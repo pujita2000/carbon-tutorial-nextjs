@@ -1,62 +1,41 @@
 'use client';
 
-import RepoTable from './RepoTable';
 import { Column, Grid } from '@carbon/react';
+import RepoTable from './RepoTable';
 
 const headers = [
   {
-    key: 'name',
-    header: 'Name',
+    key: 'prop',
+    header: 'Property',
   },
   {
-    key: 'createdAt',
-    header: 'Created',
+    key: 'file_path',
+    header: 'File',
   },
   {
-    key: 'updatedAt',
-    header: 'Updated',
-  },
-  {
-    key: 'issueCount',
-    header: 'Open Issues',
-  },
-  {
-    key: 'stars',
-    header: 'Stars',
-  },
-  {
-    key: 'links',
-    header: 'Links',
+    key: 'vscode',
+    header: 'VSCode Link',
   },
 ];
 
 const rows = [
   {
     id: '1',
-    name: 'Repo 1',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
+    prop: 'asm',
+    file_path: 'path/to/file.cpp',
+    vscode: 'link.vscode',
   },
   {
     id: '2',
-    name: 'Repo 2',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
+    prop: 'GlobalVariables',
+    file_path: 'path/to/file/glob.cpp',
+    vscode: 'link.vscode.for.glob',
   },
   {
     id: '3',
-    name: 'Repo 3',
-    createdAt: 'Date',
-    updatedAt: 'Date',
-    issueCount: '123',
-    stars: '456',
-    links: 'Links',
+    prop: 'F1O37',
+    file_path: 'path/to/file/f.cpp',
+    vscode: 'link.vscode.for.f',
   },
 ];
 

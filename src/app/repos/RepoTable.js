@@ -1,65 +1,120 @@
 'use client';
 
-import React from 'react';
+import { Send } from '@carbon/icons-react';
 import {
   DataTable,
-  TableContainer,
   Table,
-  TableHead,
-  TableRow,
-  TableExpandHeader,
-  TableHeader,
+  TableBatchAction,
+  TableBatchActions,
   TableBody,
-  TableExpandRow,
   TableCell,
+  TableContainer,
+  TableExpandHeader,
+  TableExpandRow,
   TableExpandedRow,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableSelectAll,
+  TableSelectRow,
+  TableToolbar,
+  TableToolbarContent,
+  TableToolbarSearch,
 } from '@carbon/react';
+import React from 'react';
 
 const RepoTable = ({ rows, headers }) => {
   return (
-    <DataTable
-      rows={rows}
-      headers={headers}
-      render={({
+    <DataTable rows={rows} headers={headers}>
+      {({
         rows,
         headers,
         getHeaderProps,
         getRowProps,
         getTableProps,
-      }) => (
-        <TableContainer
-          title="Carbon Repositories"
-          description="A collection of public Carbon repositories."
-        >
-          <Table {...getTableProps()}>
-            <TableHead>
-              <TableRow>
-                <TableExpandHeader />
-                {headers.map((header) => (
-                  <TableHeader key={header.key} {...getHeaderProps({ header })}>
-                    {header.header}
-                  </TableHeader>
+        getSelectionProps,
+        getTableContainerProps,
+        getExpandHeaderProps,
+        getBatchActionProps,
+        onInputChange,
+        selectRow,
+        selectedRows,
+        getToolbarProps,
+      }) => {
+        const batchActionProps = {
+          ...getBatchActionProps({
+            onSelectAll: () => {
+              rows.map((row) => {
+                if (!row.isSelected) {
+                  selectRow(row.id);
+                }
+              });
+            },
+          }),
+        };
+        return (
+          <TableContainer
+            title="very very rough table"
+            description="vva-report mvp"
+            {...getTableContainerProps()}
+          >
+            <TableToolbar {...getToolbarProps()}>
+              <TableBatchActions {...batchActionProps}>
+                <TableBatchAction
+                  tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
+                  renderIcon={Send}
+                >
+                  Submit Jira Issue
+                </TableBatchAction>
+              </TableBatchActions>
+              <TableToolbarContent>
+                <TableToolbarSearch onChange={onInputChange} />
+              </TableToolbarContent>
+            </TableToolbar>
+            <Table {...getTableProps()}>
+              <TableHead>
+                <TableRow>
+                  <TableExpandHeader
+                    enableToggle={true}
+                    {...getExpandHeaderProps()}
+                  />
+                  <TableSelectAll {...getSelectionProps()} />
+
+                  {headers.map((header) => (
+                    <TableHeader
+                      key={header.key}
+                      {...getHeaderProps({ header })}
+                    >
+                      {header.header}
+                    </TableHeader>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <React.Fragment key={row.id}>
+                    <TableExpandRow {...getRowProps({ row })}>
+                      <TableSelectRow
+                        {...getSelectionProps({
+                          row,
+                        })}
+                      />
+                      {row.cells.map((cell) => (
+                        <TableCell key={cell.id}>{cell.value}</TableCell>
+                      ))}
+                    </TableExpandRow>
+
+                    <TableExpandedRow colSpan={headers.length + 2}>
+                      <p>description of fragment</p>
+                    </TableExpandedRow>
+                  </React.Fragment>
                 ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <React.Fragment key={row.id}>
-                  <TableExpandRow {...getRowProps({ row })}>
-                    {row.cells.map((cell) => (
-                      <TableCell key={cell.id}>{cell.value}</TableCell>
-                    ))}
-                  </TableExpandRow>
-                  <TableExpandedRow colSpan={headers.length + 1}>
-                    <p>Row description</p>
-                  </TableExpandedRow>
-                </React.Fragment>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
-    />
+              </TableBody>
+            </Table>
+          </TableContainer>
+        );
+      }}
+    </DataTable>
   );
 };
 
