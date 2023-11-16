@@ -1,6 +1,6 @@
 'use client';
 
-import { Send } from '@carbon/icons-react';
+import { PresentationFile, Send } from '@carbon/icons-react';
 import {
   DataTable,
   Table,
@@ -64,7 +64,19 @@ const RepoTable = ({ rows, headers }) => {
                   tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
                   renderIcon={Send}
                 >
-                  Submit Jira Issue
+                  Submit Issue
+                </TableBatchAction>
+                <TableBatchAction
+                  tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
+                  renderIcon={PresentationFile}
+                >
+                  Preview PDF
+                </TableBatchAction>
+                <TableBatchAction
+                  tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
+                  renderIcon={PresentationFile}
+                >
+                  Preview Excel
                 </TableBatchAction>
               </TableBatchActions>
               <TableToolbarContent>

@@ -3,16 +3,20 @@
 import {
   Breadcrumb,
   BreadcrumbItem,
-  Button,
-  Tabs,
+  Checkbox,
+  CheckboxGroup,
+  Column,
+  Grid,
   Tab,
   TabList,
-  TabPanels,
   TabPanel,
-  Grid,
-  Column,
+  TabPanels,
+  Tabs,
 } from '@carbon/react';
 import Image from 'next/image';
+
+// checklist: select / deselect all
+// download template in pdf, download template excel (batch action)
 
 export default function LandingPage() {
   return (
@@ -43,15 +47,31 @@ export default function LandingPage() {
                   sm={4}
                   className="landing-page__tab-content"
                 >
-                  <h2 className="landing-page__subheading">What is Carbon?</h2>
-                  <p className="landing-page__p">
-                    Carbon is IBM’s open-source design system for digital
-                    products and experiences. With the IBM Design Language as
-                    its foundation, the system consists of working code, design
-                    tools and resources, human interface guidelines, and a
-                    vibrant community of contributors.
-                  </p>
-                  <Button>Learn more</Button>
+                  <CheckboxGroup
+                    className="checklist"
+                    legendText="Components in report"
+                  >
+                    <Checkbox
+                      labelText={`Findings by query`}
+                      id="checkbox-label-1"
+                    />
+                    <Checkbox
+                      labelText={`Pie chart breakdown by query`}
+                      id="checkbox-label-2"
+                    />
+                    <Checkbox
+                      labelText={`Details of every issue`}
+                      id="checkbox-label-2"
+                    />
+                    <Checkbox
+                      labelText={`VSCode Links`}
+                      id="checkbox-label-2"
+                    />
+                    <Checkbox
+                      labelText={`Summary Statistics`}
+                      id="checkbox-label-2"
+                    />
+                  </CheckboxGroup>
                 </Column>
                 <Column md={4} lg={{ span: 8, offset: 7 }} sm={4}>
                   <Image

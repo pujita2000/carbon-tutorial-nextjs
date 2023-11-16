@@ -1,27 +1,27 @@
 'use client';
 
+import { Notification, Switcher, UserAvatar } from '@carbon/icons-react';
 import {
   Header,
   HeaderContainer,
-  HeaderName,
-  HeaderNavigation,
+  HeaderGlobalAction,
+  HeaderGlobalBar,
   HeaderMenuButton,
   HeaderMenuItem,
-  HeaderGlobalBar,
-  HeaderGlobalAction,
-  SkipToContent,
+  HeaderName,
+  HeaderNavigation,
+  HeaderSideNavItems,
   SideNav,
   SideNavItems,
-  HeaderSideNavItems,
+  SkipToContent,
 } from '@carbon/react';
-import { Switcher, Notification, UserAvatar } from '@carbon/icons-react';
 
 import Link from 'next/link';
 
 const TutorialHeader = () => (
   <HeaderContainer
     render={({ isSideNavExpanded, onClickSideNavExpand }) => (
-      <Header aria-label="Carbon Tutorial">
+      <Header aria-label="Tutorial">
         <SkipToContent />
         <HeaderMenuButton
           aria-label="Open menu"
@@ -29,11 +29,14 @@ const TutorialHeader = () => (
           isActive={isSideNavExpanded}
         />
         <Link href="/" passHref legacyBehavior>
-          <HeaderName prefix="IBM">Carbon Tutorial</HeaderName>
+          <HeaderName prefix="STR">MVP</HeaderName>
         </Link>
-        <HeaderNavigation aria-label="Carbon Tutorial">
+        <HeaderNavigation aria-label="Tutorial">
           <Link href="/repos" passHref legacyBehavior>
-            <HeaderMenuItem>Repositories</HeaderMenuItem>
+            <HeaderMenuItem>Issues Table</HeaderMenuItem>
+          </Link>
+          <Link href="/template" passHref legacyBehavior>
+            <HeaderMenuItem>Template Builder</HeaderMenuItem>
           </Link>
         </HeaderNavigation>
         <SideNav
@@ -44,7 +47,10 @@ const TutorialHeader = () => (
           <SideNavItems>
             <HeaderSideNavItems>
               <Link href="/repos" passHref legacyBehavior>
-                <HeaderMenuItem>Repositories</HeaderMenuItem>
+                <HeaderMenuItem>Issues Table</HeaderMenuItem>
+              </Link>
+              <Link href="/templates" passHref legacyBehavior>
+                <HeaderMenuItem>Template Builder</HeaderMenuItem>
               </Link>
             </HeaderSideNavItems>
           </SideNavItems>
